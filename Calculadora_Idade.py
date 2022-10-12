@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkcalendar import Calendar,DateEntry
 
 janela = Tk()
 janela.title("")
@@ -41,6 +42,23 @@ data_nas.place(x=40,y=70)
 
 cal_2 = DateEntry(freme_baixo, width=13,bg="darkblue",fg=cor3,borderwidth=2,date_patter="mm/dd/y",y=2021)
 cal_2.place(x=180,y=70)
+
+# Contador
+
+data_anos = Label(freme_baixo,text="27",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Ivi 25 bold"),anchor=CENTER)
+data_anos.place(x=53,y=135)
+data_anos_nome = Label(freme_baixo,text="Anos",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Ivi 11 bold"),anchor=CENTER)
+data_anos_nome.place(x=50,y=175)
+
+data_meses = Label(freme_baixo,text="11",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Ivi 25 bold"),anchor=CENTER)
+data_meses.place(x=133,y=135)
+data_meses_nome = Label(freme_baixo,text="Meses",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Ivi 11 bold"),anchor=CENTER)
+data_meses_nome.place(x=130,y=175)
+
+data_dias = Label(freme_baixo,text="27",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Ivi 25 bold"),anchor=CENTER)
+data_dias.place(x=211,y=135)
+data_dias_nome = Label(freme_baixo,text="Dias",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Ivi 11 bold"),anchor=CENTER)
+data_dias_nome.place(x=210,y=175)
 
 
 
