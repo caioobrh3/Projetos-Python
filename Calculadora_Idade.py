@@ -28,5 +28,20 @@ l_calculadora.place(x=0,y=30)
 l_idade = Label(freme_cima,text="DE IDADE",fg=cor4 ,width=11,height=1,padx=0,relief=FLAT,anchor=CENTER,font=("Arial 35 bold"),bg=cor1)
 l_idade.place(x=0,y=70)
 
+# Label baixo
+
+data_incio = Label(freme_baixo,text="Data inicial",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Arial 11"),anchor=NW)
+data_incio.place(x=40,y=30)
+
+cal_1 = DateEntry(freme_baixo, width=13,bg="darkblue",fg=cor3,borderwidth=2,date_patter="mm/dd/y",y=2021)
+cal_1.place(x=180,y=30)
+
+data_nas = Label(freme_baixo,text="Data de nascimento",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Arial 11"),anchor=NW)
+data_nas.place(x=40,y=70)
+
+cal_2 = DateEntry(freme_baixo, width=13,bg="darkblue",fg=cor3,borderwidth=2,date_patter="mm/dd/y",y=2021)
+cal_2.place(x=180,y=70)
+
+
 
 janela.mainloop()
