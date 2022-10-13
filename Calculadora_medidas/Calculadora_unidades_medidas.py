@@ -27,6 +27,8 @@ frame_direita.place(x=454,y=2)
 
 # Func
 
+# Valores aleatorios ussei apenas como parametro
+
 unidades = {"Massa":[{"kg":1000},{"hg":100},{"dag":10},{"g":1},{"dg":0.1},{"cg":0.01},{"mg":0.001}],
             "Tempo": [{"hr": 1000}, {"mm": 100}, {"s": 10}, {"ms": 1}, {"ns": 0.1}, {"nns": 0.01}, {"nnns": 0.001}],
             "Comprimento": [{"KM": 1000}, {"hm": 100}, {"dam": 10}, {"m": 1}, {"dm": 0.1}, {"cm": 0.01}, {"mm": 0.001}],
@@ -37,6 +39,7 @@ unidades = {"Massa":[{"kg":1000},{"hg":100},{"dag":10},{"g":1},{"dg":0.1},{"cg":
             "Energia": [{"KM": 1000}, {"hm": 100}, {"dam": 10}, {"m": 1}, {"dm": 0.1}, {"cm": 0.01}, {"mm": 0.001}],
             "Pressao": [{"KM": 1000}, {"hm": 100}, {"dam": 10}, {"m": 1}, {"dm": 0.1}, {"cm": 0.01}, {"mm": 0.001}],
             }
+# unidades
 
 def mostrar_menu(i):
 
@@ -53,6 +56,41 @@ def mostrar_menu(i):
     c_de["values"] = unidades_de
     c_para["values"] = unidades_para
 
+    def calcular():
+        a = c_de.get()
+        b = c_para.get()
+
+        numero_para_converter = float(e_numero.get())
+
+        dist = unidades_para.index(b) - unidades_de.index(a)
+
+        # Multiplicar
+
+        if unidades_para.index(a) <= unidades_de.index(b):
+            distancia = unidades_para.index(b) - unidades_de.index(a)
+            resultado = numero_para_converter  *(10**distancia)
+            l_resultado["text"] = resultado
+
+        else:
+            distancia = unidades_para.index(a) - unidades_de.index(b)
+            resultado = numero_para_converter  /(10**distancia)
+            l_resultado["text"] = resultado
+
+        # Divisao
+
+        if unidades_para.index(a) > unidades_de.index(b):
+
+            if unidades_para.index(a) > unidades_de.index(b):
+                distancia = unidades_de.index(a) - unidades_para.index(b)
+                resultado = numero_para_converter  /(10**distancia)
+                l_resultado["text"] = resultado
+
+            else:
+                distancia = unidades_para.index(a) - unidades_de.index(b)
+                resultado = numero_para_converter  *(10**distancia)
+                l_resultado["text"] = resultado
+
+
     l_unidade_nome["text"] = i
 
     l_info = Label(frame_direita, text="Digite o numero", width=16, height=2, padx=0, pady=3,relief=FLAT, fg=cor1, bg=cor2,anchor=NW, font=("Ivy 10 bold"))
@@ -61,11 +99,11 @@ def mostrar_menu(i):
     e_numero = Entry(frame_direita,width=9,font=("Ivy 15 bold"),justify=CENTER,relief=SOLID)
     e_numero.place(x=0,y=150)
 
-    b_calcular = Button(frame_direita, text="Calcular", width=8, height=1, fg=cor2, bg=cor3, overrelief=RIDGE, relief=RAISED, anchor=NW,font=("Ivy 10 bold"))
+    b_calcular = Button(frame_direita,command=calcular, text="Calcular", width=8, height=1, fg=cor2, bg=cor3, overrelief=RIDGE, relief=RAISED, anchor=NW,font=("Ivy 10 bold"))
     b_calcular.place(x=115,y=150)
 
-
-
+    l_resultado = Label(frame_direita, text="", width=13, height=1, padx=0, pady=3,relief=GROOVE, fg=cor1, bg=cor2,anchor=CENTER, font=("Ivy 18 bold"))
+    l_resultado.place(x=0, y=200)
 
 # estilo
 
