@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from PIL import ImageTk, Image
 
 # Cores
 
@@ -35,8 +36,15 @@ l_app_nome.place(x=50,y=10)
 
 # Freme esquerda
 
-b_0 = Button(frame_esquerda,text="Peso",width=10,height=2,fg=cor2,bg=cor3,overrelief=SOLID,relief=FLAT,anchor=NW,font=("Ivy 10 bold"))
+img_0 = Image.open("images/balanca.png")
+img_0 = img_0.resize((50,50), Image.ANTIALIAS)
+img_0 = ImageTk.PhotoImage(img_0)
+
+b_0 = Button(frame_esquerda,text="Massa",image=img_0,compound=LEFT,width=130,height=50,fg=cor2,bg=cor3,overrelief=SOLID,relief=FLAT,anchor=NW,font=("Ivy 10 bold"))
 b_0.grid(row=0,column=0,sticky=NSEW,padx=5,pady=5)
+
+
+
 
 
 janela.mainloop()
