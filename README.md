@@ -11,6 +11,7 @@ Com Interface grafica
 + Tic Tac Toe (jogo Da Velha)
 + App que pega valor do BTC
 + Conversor de medidas
++ App ver valor BTC/DOL/BRL com botão buscas valor
   
 Os mas baiscos,apenas no terminal:
 
