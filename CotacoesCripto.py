@@ -10,6 +10,7 @@ def pegar_cotacoes():
     cotacao_euro = requisicao_dic['EURBRL']['bid']
     cotacao_btc = requisicao_dic['BTCBRL']['bid']
 
+
     texto = f'''
     Dólar: {cotacao_dolar}
     Euro: {cotacao_euro}
