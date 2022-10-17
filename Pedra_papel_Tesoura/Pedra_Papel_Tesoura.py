@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from PIL import Image,ImageTk
 
 # cores
 co0 = "#FFFFFF"  # white / branca
@@ -52,5 +53,13 @@ app_2_linha.place(x=255,y=0)
 app_linha = Label(frame_cima,text='',width=255,anchor=CENTER,font=('Ivy 1 bold'),bg=co0,fg=co0)
 app_linha.place(x=0,y=95)
 
+# Frame Baixo
+
+icon_1 = Image.open('pedra.png')
+icon_1 = icon_1.resize((50,50))
+icon_1 = ImageTk.PhotoImage(icon_1)
+
+b_icon_1 = Button(frame_baixo,width=50,image=icon_1,compound=CENTER,bg=co0,fg=co0,font=('Ivy 1 bold'),anchor=CENTER,relief=FLAT)
+b_icon_1.place(x=15,y=60)
 
 janela.mainloop()
