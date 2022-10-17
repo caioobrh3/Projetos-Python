@@ -12,6 +12,7 @@ Com Interface grafica
 + App que pega valor do BTC
 + Conversor de medidas
 + App ver valor BTC/DOL/BRL com botão buscas valor
++ Color Picker
   
 Os mas baiscos,apenas no terminal:
 
