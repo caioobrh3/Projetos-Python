@@ -13,6 +13,7 @@ Com Interface grafica
 + Conversor de medidas
 + App ver valor BTC/DOL/BRL com botão buscas valor
 + Color Picker
++ Jogo Pedra/Papel/Tesoura
   
 Os mas baiscos,apenas no terminal:
 
@@ -30,6 +31,7 @@ Os mas baiscos,apenas no terminal:
     <td>PIL</td>
     <td>requests</td>
     <td>tkcalendar</td>
+    <td> random</td>
     <td>etc...</td>
   </tr>
 </table>
