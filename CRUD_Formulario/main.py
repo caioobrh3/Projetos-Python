@@ -3,6 +3,10 @@ from tkinter import font
 from cgitb import text
 from tkcalendar import Calendar,DateEntry
 from tkinter import ttk
+from tkinter import messagebox
+
+from view import *
+
 
 # Cores
 co0 = "#f0f3f5"  # Preta
@@ -38,6 +42,37 @@ frame_direita.grid(row=0,column=1,rowspan=2,padx=1,pady=0,sticky=NSEW)
 app_nome = Label(frame_cima,text='Lista de consultas',anchor=NW,bg=co2,fg=co1,relief=FLAT,font=("Ivy 13 bold"))
 app_nome.place(x=75,y=15)
 
+def inserir():
+    nome = e_nome.get()
+    email = e_email.get()
+    tel = e_telefone.get()
+    dia = e_cal.get()
+    estado = e_estado.get()
+    assunto = e_assunto.get()
+
+    lista = [nome,email,tel,dia,estado,assunto]
+
+    if nome == "":
+        messagebox.showerror('Erro','O nome não pode ser vazio')
+    else:
+        inserir_info(lista)
+        messagebox.showinfo('Sucesso','Os dados foram inserido')
+
+        e_nome.delete(0,END)
+        e_email.delete(0,END)
+        e_telefone.delete(0,END)
+        e_cal.delete(0,END)
+        e_estado.delete(0,END)
+        e_assunto.delete(0,END)
+    for widget in frame_direita.winfo_children():
+        widget.destroy()
+
+    mostrar()
+
+
+
+
+
 # baixo
 #
 l_nome = Label(frame_baixo,text='Nome',anchor=NW,bg=co1,fg=co4,relief=FLAT,font=("Ivy 10 bold"))
@@ -65,14 +100,14 @@ l_estado.place(x=160,y=190)
 e_estado = Entry(frame_baixo,width=20,justify=LEFT,relief=SOLID,)
 e_estado.place(x=162,y=213)
 
-l_nome = Label(frame_baixo,text='Informação extra',anchor=NW,bg=co1,fg=co4,relief=FLAT,font=("Ivy 10 bold"))
-l_nome.place(x=10,y=260)
-e_nome = Entry(frame_baixo,width=45,justify=LEFT,relief=SOLID,)
-e_nome.place(x=13,y=285)
+l_assunto = Label(frame_baixo,text='Informação extra',anchor=NW,bg=co1,fg=co4,relief=FLAT,font=("Ivy 10 bold"))
+l_assunto.place(x=10,y=260)
+e_assunto = Entry(frame_baixo,width=45,justify=LEFT,relief=SOLID,)
+e_assunto.place(x=13,y=285)
 
 # botao
 
-b_inserir = Button(frame_baixo,text='Inserir',width=10,bg=co6,fg=co1,font=("Ivy 9 bold"),relief=RAISED,overrelief=RIDGE,anchor=CENTER)
+b_inserir = Button(frame_baixo,command=inserir,text='Inserir',width=10,bg=co6,fg=co1,font=("Ivy 9 bold"),relief=RAISED,overrelief=RIDGE,anchor=CENTER)
 b_inserir.place(x=13,y=340)
 
 b_atualizar = Button(frame_baixo,text='Atualizar',width=10,bg=co2,fg=co1,font=("Ivy 9 bold"),relief=RAISED,overrelief=RIDGE,anchor=CENTER)
@@ -83,40 +118,38 @@ b_apagar.place(x=190,y=340)
 
 #codigo
 
-lista = [
-    [1, 'Joao Futi Muanda', 'joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente'],
-    [2, 'Fortnato Mpngo', 'joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente'],
-    [3, 'Usando Python', 'joao@mail.com', 123456789, "12/19/2010", 'Normal', 'gostaria de o consultar pessoalmente'],
-    [4, 'Clinton Berclidio', 'joao@mail.com', 123456789, "12/19/2010", 'Normal','gostaria de o consultar pessoalmente'],
-    [5, 'A traicao da Julieta', 'joao@mail.com', 123456789, "12/19/2010", 'Normal','gostaria de o consultar pessoalmente']
-    ]
+def mostrar():
+    lista = motrar_info()
 
-tabela_head = ['ID', 'Nome', 'email', 'telefone', 'Data', 'Estado', 'Sobre']
 
-tree = ttk.Treeview(frame_direita, selectmode="extended", columns=tabela_head, show="headings")
+    tabela_head = ['ID', 'Nome', 'email', 'telefone', 'Data', 'Estado', 'Sobre']
 
-vsb = ttk.Scrollbar(frame_direita, orient="vertical", command=tree.yview)
+    tree = ttk.Treeview(frame_direita, selectmode="extended", columns=tabela_head, show="headings")
 
-hsb = ttk.Scrollbar(frame_direita, orient="horizontal", command=tree.xview)
+    vsb = ttk.Scrollbar(frame_direita, orient="vertical", command=tree.yview)
 
-tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
-tree.grid(column=0, row=0, sticky='nsew')
-vsb.grid(column=1, row=0, sticky='ns')
-hsb.grid(column=0, row=1, sticky='ew')
+    hsb = ttk.Scrollbar(frame_direita, orient="horizontal", command=tree.xview)
 
-frame_direita.grid_rowconfigure(0, weight=12)
+    tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+    tree.grid(column=0, row=0, sticky='nsew')
+    vsb.grid(column=1, row=0, sticky='ns')
+    hsb.grid(column=0, row=1, sticky='ew')
 
-hd = ["nw", "nw", "nw", "nw", "nw", "center", "center"]
-h = [30, 170, 140, 100, 120, 50, 100]
-n = 0
+    frame_direita.grid_rowconfigure(0, weight=12)
 
-for col in tabela_head:
-    tree.heading(col, text=col.title(), anchor=CENTER)
-    tree.column(col, width=h[n], anchor=hd[n])
+    hd = ["nw", "nw", "nw", "nw", "nw", "center", "center"]
+    h = [30, 170, 140, 100, 120, 50, 100]
+    n = 0
 
-    n += 1
+    for col in tabela_head:
+        tree.heading(col, text=col.title(), anchor=CENTER)
+        tree.column(col, width=h[n], anchor=hd[n])
 
-for item in lista:
-    tree.insert('', 'end', values=item)
+        n += 1
+
+    for item in lista:
+        tree.insert('', 'end', values=item)
+
+mostrar()
 
 janela.mainloop()
