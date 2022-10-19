@@ -14,6 +14,7 @@ Com Interface grafica
 + App ver valor BTC/DOL/BRL com botão buscas valor
 + Color Picker
 + Jogo Pedra/Papel/Tesoura
++ Formulario de consultas com banco de dados simples(Não finalizei ainda)
   
 Os mas baiscos,apenas no terminal:
 
