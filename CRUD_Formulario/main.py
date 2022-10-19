@@ -42,6 +42,8 @@ frame_direita.grid(row=0,column=1,rowspan=2,padx=1,pady=0,sticky=NSEW)
 app_nome = Label(frame_cima,text='Lista de consultas',anchor=NW,bg=co2,fg=co1,relief=FLAT,font=("Ivy 13 bold"))
 app_nome.place(x=75,y=15)
 
+global tree
+
 def inserir():
     nome = e_nome.get()
     email = e_email.get()
@@ -69,12 +71,66 @@ def inserir():
 
     mostrar()
 
+def atualizar():
+    try:
+        treev_dados = tree.focus()
+        treev_dicionario = tree.item(treev_dados)
+        tree_lista = treev_dicionario['values']
+
+        valor_id = tree_lista[0]
+
+        e_nome.delete(0, END)
+        e_email.delete(0, END)
+        e_telefone.delete(0, END)
+        e_cal.delete(0, END)
+        e_estado.delete(0, END)
+        e_assunto.delete(0, END)
+
+        e_nome.insert(0,tree_lista[1])
+        e_email.insert(0,tree_lista[2])
+        e_telefone.insert(0,tree_lista[3])
+        e_cal.insert(0,tree_lista[4])
+        e_estado.insert(0,tree_lista[5])
+        e_assunto.insert(0,tree_lista[6])
+
+        def update():
+            nome = e_nome.get()
+            email = e_email.get()
+            tel = e_telefone.get()
+            dia = e_cal.get()
+            estado = e_estado.get()
+            assunto = e_assunto.get()
+
+            lista = [nome, email, tel, dia, estado, assunto,valor_id]
+
+            if nome == "":
+                messagebox.showerror('Erro', 'O nome não pode ser vazio')
+            else:
+                atualizar_info(lista)
+                messagebox.showinfo('Sucesso', 'Os dados foram atualizados')
+
+                e_nome.delete(0, END)
+                e_email.delete(0, END)
+                e_telefone.delete(0, END)
+                e_cal.delete(0, END)
+                e_estado.delete(0, END)
+                e_assunto.delete(0, END)
+            for widget in frame_direita.winfo_children():
+                widget.destroy()
+            mostrar()
+
+        b_confirmar = Button(frame_baixo, text='Confirmar',command=update, width=10, bg=co2, fg=co1, font=("Ivy 7 bold"),relief=RAISED, overrelief=RIDGE, anchor=CENTER)
+        b_confirmar.place(x=110, y=375)
+
+
+    except IndexError:
+        messagebox.showerror('Erro', 'Seleciona um dos dados')
 
 
 
 
 # baixo
-#
+
 l_nome = Label(frame_baixo,text='Nome',anchor=NW,bg=co1,fg=co4,relief=FLAT,font=("Ivy 10 bold"))
 l_nome.place(x=10,y=10)
 e_nome = Entry(frame_baixo,width=45,justify=LEFT,relief=SOLID,)
@@ -110,7 +166,7 @@ e_assunto.place(x=13,y=285)
 b_inserir = Button(frame_baixo,command=inserir,text='Inserir',width=10,bg=co6,fg=co1,font=("Ivy 9 bold"),relief=RAISED,overrelief=RIDGE,anchor=CENTER)
 b_inserir.place(x=13,y=340)
 
-b_atualizar = Button(frame_baixo,text='Atualizar',width=10,bg=co2,fg=co1,font=("Ivy 9 bold"),relief=RAISED,overrelief=RIDGE,anchor=CENTER)
+b_atualizar = Button(frame_baixo,command=atualizar,text='Atualizar',width=10,bg=co2,fg=co1,font=("Ivy 9 bold"),relief=RAISED,overrelief=RIDGE,anchor=CENTER)
 b_atualizar.place(x=100,y=340)
 
 b_apagar = Button(frame_baixo,text='Deletar',width=10,bg=co7,fg=co1,font=("Ivy 9 bold"),relief=RAISED,overrelief=RIDGE,anchor=CENTER)
@@ -119,8 +175,10 @@ b_apagar.place(x=190,y=340)
 #codigo
 
 def mostrar():
-    lista = motrar_info()
 
+    global tree
+
+    lista = motrar_info()
 
     tabela_head = ['ID', 'Nome', 'email', 'telefone', 'Data', 'Estado', 'Sobre']
 

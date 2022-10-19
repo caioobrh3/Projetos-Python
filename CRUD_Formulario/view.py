@@ -21,11 +21,11 @@ def motrar_info():
             lista.append(i)
     return lista
 
-lista = ['joao',1]
-with con:
-    cur = con.cursor()
-    query = "UPDATE formulario SET nome=? WHERE id=?"
-    cur.execute(query,lista)
+def atualizar_info(i):
+    with con:
+        cur = con.cursor()
+        query = "UPDATE formulario SET nome=?, email=?, telefone=?, dia_em=?, estado=?,assunto=?, WHERE id=?"
+        cur.execute(query,lista)
 
 
 lista = [1]
