@@ -37,3 +37,7 @@ Os mas baiscos,apenas no terminal:
   </tr>
 </table>
 
+## Projetos 
+
+![d749be68-ba26-4931-88ca-dfd2cf3e4272](https://user-images.githubusercontent.com/83782001/200959820-82bd8490-c7cd-439b-bd28-aeb417ea5eaf.gif)
+
