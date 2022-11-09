@@ -56,7 +56,7 @@ def calcular():
 
 # Label baixo
 
-data_incio = Label(freme_baixo,text="Data inicial",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Arial 11"),anchor=NW)
+data_incio = Label(freme_baixo,text="Data atual",fg=cor3,bg=cor2,height=1,padx=0,relief=FLAT,font=("Arial 11"),anchor=NW)
 data_incio.place(x=40,y=30)
 
 cal_1 = DateEntry(freme_baixo, width=13,bg="darkblue",fg=cor3,borderwidth=2,date_pattern="mm/dd/y",y=2021)
